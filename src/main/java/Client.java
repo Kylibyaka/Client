@@ -23,9 +23,9 @@ public class Client {
         buffer.clear();
         int read = socketChannel.read(buffer);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        byte inputValue;
-        while((inputValue = buffer.get()) != -1){
-            baos.write(inputValue);
+        buffer.flip();
+        for(int i = 0; i < read; i++){
+            baos.write(buffer.get());
         }
         System.out.println(new String(baos.toByteArray()));
     }
